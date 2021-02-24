@@ -1,0 +1,9 @@
+body{
+    font-family: 'Jua', sans-serif;
+    background-color: rgb(34, 34, 34);
+}
+
+#jumbotron{
+    margin-top: 30px;
+    text-align: center;
+}
