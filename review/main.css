@@ -1,11 +1,12 @@
 body{
     font-family: 'Jua', sans-serif;
-    background-color: rgb(34, 34, 34);
+    background-color:#0d253f;
 }
 
 #jumbotron{
     margin-top: 30px;
     text-align: center;
 }
+#movieList:first-child{display: none;}
 
-/*#btn-review{width: 100%;}*/
+.btn-success{width: 100%;}
