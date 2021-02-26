@@ -1,3 +1,4 @@
+let target_movie=0; //해당 영화의 id 값을 받기 위한 전역변수
 $(document).ready(function(){
     $.ajax({
         type: "GET",
@@ -29,5 +30,39 @@ $(document).ready(function(){
 }); //영화 정보 불러오고, 각 영화 창 구현하기
 
 function review(id){ //각 영화의 id값
+    target_movie=id;
+    $.ajax({
+        type:"GET",
+        url:`http://universeapi.net/review/list?movie_id=${id}`,
+        data:{}, //url에서 이미 data를 받기로 선언함
+        success: function(json){
+            console.log(json);
+            let reviews = json.data;
+            $(".modal-body").html(''); //.modal-body의 화면 전체를 리셋   
+            for(let i=0; i<reviews.length; i++){
+                $(".modal-body").append(`<p>${reviews[i].review}</p>`)
+            }
+        }
+    })
+
     $('#reviewModal').modal('show');
-};
+};//후기 보기 기능 구현
+
+function addReview(){
+    let review=$("#review").val(); //input에 입력된 후기 값 받기
+    let review_tag=`<p>${review}</p>` //입력된 후기를 p 태그로 변환
+    $.ajax({
+        type:"POST",
+        url:"http://universeapi.net/review/add",
+        data:{
+            movie_id:target_movie,
+            review:review
+        },
+        success:function(json){
+            console.log(json);
+            $(".modal-body").append(review_tag);
+            $("#review").val('');
+        }
+    })
+
+}; //후기 입력 구현
