@@ -28,3 +28,6 @@ $(document).ready(function(){
 
 }); //영화 정보 불러오고, 각 영화 창 구현하기
 
+function review(id){ //각 영화의 id값
+    $('#reviewModal').modal('show');
+};
